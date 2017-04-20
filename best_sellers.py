@@ -7,13 +7,14 @@ import urllib2
 
 
 def main():
-    url = 'https://api.nytimes.com/svc/books/v3/lists.json?api-key=4c6992402d6a4f9fa7eb5b95f1f69d03&list=%s'
+    url = 'https://api.nytimes.com/svc/books/v3/lists.json?api-key=%s=%s'
+    key = #### fill in key ####
     fields = ['title', 'author']
     sections = ['hardcover-nonfiction']#, 'combined-print-and-e-book-nonfiction']
     new_bests = {}
     for section in sections:
         new_bests[section] = {}
-        books_url = url % (section)
+        books_url = url % (key,section)
         ## limit to top 15 books as only they have weeks_on_list field
         # content = requests.get(books_url, timeout=60).json()#['results'][:15]
         content = urllib2.urlopen(books_url).read()#, timeout=60)
